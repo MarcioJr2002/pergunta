@@ -1,0 +1,250 @@
+:root {
+  --ink: #6d2948;
+  --pink: #ff4f93;
+  --pink-deep: #e42574;
+  --blush: #fff4f8;
+  --card: rgba(255, 255, 255, 0.86);
+  --shadow: 0 18px 40px rgba(196, 40, 100, 0.18);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: "Nunito", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, #ffe4f1 0, transparent 32%),
+    radial-gradient(circle at 90% 0%, #ffd0e6 0, transparent 28%),
+    linear-gradient(180deg, #fff8fb 0%, #ffd9ea 100%);
+  overflow-x: hidden;
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.float {
+  position: absolute;
+  top: -10vh;
+  animation: fall linear infinite;
+  opacity: 0.85;
+  user-select: none;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(115vh) rotate(18deg);
+  }
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: min(440px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: calc(28px + env(safe-area-inset-top)) 8px calc(28px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 100dvh;
+  justify-content: center;
+}
+
+.portrait {
+  position: relative;
+  width: min(68vw, 250px);
+  margin: 0 0 18px;
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 42% 18%;
+  border-radius: 46% 46% 40% 40%;
+  border: 6px solid #fff;
+  box-shadow: var(--shadow);
+  background: #ffd0e4;
+}
+
+.bow {
+  position: absolute;
+  width: 46%;
+  top: -8%;
+  right: -8%;
+  fill: var(--pink);
+  stroke: #2b1220;
+  stroke-width: 5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  filter: drop-shadow(0 6px 0 rgba(43, 18, 32, 0.08));
+  transform: rotate(12deg);
+}
+
+h1 {
+  margin: 0 0 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.name {
+  font-family: "Pacifico", cursive;
+  font-size: clamp(2rem, 8vw, 2.7rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--pink-deep);
+}
+
+.ask {
+  font-size: clamp(1.25rem, 5.4vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.emojis {
+  font-size: 1.7rem;
+  margin-top: 4px;
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  min-height: 64px;
+  width: 100%;
+}
+
+.btn {
+  appearance: none;
+  border: 3px solid #2b1220;
+  border-radius: 999px;
+  min-width: 128px;
+  min-height: 58px;
+  padding: 12px 28px;
+  font: 800 1.2rem/1 "Nunito", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #2b1220;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #2b1220;
+}
+
+.yes {
+  background: var(--pink);
+  color: white;
+}
+
+.no {
+  background: white;
+  color: var(--ink);
+  touch-action: none;
+  z-index: 5;
+}
+
+.no.away {
+  position: fixed;
+  margin: 0;
+  animation: pop 0.18s ease;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.86);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.hint {
+  min-height: 1.4em;
+  margin: 18px 0 0;
+  font-weight: 700;
+  color: #b44b74;
+}
+
+.celebrate {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 28px 24px calc(28px + env(safe-area-inset-bottom));
+  background:
+    radial-gradient(circle at 50% 30%, #fff 0, transparent 36%),
+    linear-gradient(180deg, #ff7eb3, #ff4f93);
+  color: white;
+}
+
+.celebrate[hidden] {
+  display: none;
+}
+
+.kicker {
+  margin: 0;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
+
+.celebrate h2 {
+  margin: 8px 0 10px;
+  font-family: "Pacifico", cursive;
+  font-size: clamp(4.2rem, 18vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1;
+  text-shadow: 0 8px 0 rgba(120, 10, 50, 0.18);
+}
+
+.love {
+  margin: 0;
+  max-width: 18rem;
+  font-size: clamp(1.25rem, 5vw, 1.55rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+@media (max-height: 700px) {
+  .portrait {
+    width: min(52vw, 200px);
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    margin-bottom: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float,
+  .no.away {
+    animation: none;
+  }
+}
